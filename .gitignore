@@ -6,3 +6,5 @@ dev-project-frontend/node_modules/
 dev-project-backend/.idea/
 
 *.iml
+
+dev-project-frontend/.idea/
