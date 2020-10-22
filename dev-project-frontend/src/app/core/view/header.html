@@ -1,4 +1,15 @@
 <div class="app-header">
-  <div class="row">
+  <div class="container body-header">
+    <div class="row">
+      <div class="col-sm-5">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <span class="funny-text">Funny Movies</span>
+      </div>
+      <div class="col-sm-7 login">
+        <input placeholder="Email" [(ngModel)]="email">
+        <input placeholder="Password" [(ngModel)]="password">
+        <button type="button" class="btn btn-secondary btn-sm">Login / Register</button>
+      </div>
+    </div>
   </div>
 </div>

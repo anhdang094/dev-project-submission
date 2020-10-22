@@ -1,77 +1,45 @@
 .home {
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  margin-top: 30px;
-
-  .menu {
-    color: #565353;
-    font-size: 22px;
-    margin-top: 20px;
-    font-weight: 600;
-    transform: rotate(-90deg);
-    /* Safari */
-    -webkit-transform: rotate(-90deg);
-    /* Firefox */
-    -moz-transform: rotate(-90deg);
-    /* IE */
-    -ms-transform: rotate(-90deg);
-    /* Opera */
-    -o-transform: rotate(-90deg);
-    /* Internet Explorer */
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  }
-
+  min-height: 700px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   .title {
-    font-size: 55px;
-    color: #565353;
+    font-size: 18px;
+    font-weight: bold;
+    color: #a20c0c;
+  }
+  .number-vote {
+    margin-right: 8px;
   }
 
-  .row.non-margin {
-    margin-left: 0px;
-    margin-right: 0px;
+  .vote {
+    margin-right: 20px;
   }
 
-  .content {
-    padding-right: 120px;
-
-    .block {
-      margin-bottom: 30px;
-    }
-
-    .content-title {
-      font-size: 20px;
-      font-weight: 600;
-    }
-
-    .content-desciption {
-      font-weight: 300;
-    }
+  .description {
+    font-weight: 300;
+    font-size: 15px;
   }
 
-  .default-btn {
-    font-size: 13px;
-    cursor: pointer;
-    margin-top: 10px;
-    color: white;
-    border: solid 1px #ac9da3 !important;
-    border-radius: 50px;
-    padding: 5px 40px;
-    border: none;
-    color: #544e50;
-    background-color: white;
-    font-weight: 700;
+  .video {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
 
-    &:focus {
-      outline: none;
-    }
+  .account {
+    margin-right: 100px;
+  }
 
-    &:hover {
-      background-color: rgb(172, 156, 162) !important;
-      color: white;
+  .large {
+    &.fa-thumbs-o-down,
+    &.fa-thumbs-o-up {
+      font-size: 40px;
     }
   }
 
-  .learn-more {
-    justify-content: center;
+  .video-frame {
+    min-width: 100%;
+    min-height: 250px;
   }
+
+
 }
