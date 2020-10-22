@@ -1,6 +1,6 @@
 package dev.remitano.core.configuration.webapp;
 
-import dev.remitano.core.authentication.JWTAuthorizationFilter;
+import dev.remitano.core.configuration.authentication.JWTAuthorizationFilter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -16,9 +16,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/profile/**").authenticated()
-                .antMatchers("/api/**").permitAll()
+                .antMatchers("/api/**").authenticated()
                 .antMatchers("/authen/**").permitAll()
-                .anyRequest().permitAll();
+                .anyRequest().authenticated();
     }
 }

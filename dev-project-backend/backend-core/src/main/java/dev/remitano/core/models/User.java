@@ -13,14 +13,11 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User extends GenericEntity {
 
-    @Column(name = "user_name")
-    private String userName;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column(name = "password")
-    private String passWord;
-
-    @Column(name = "email")
-    private String email;
+    private String password;
 
 }
 

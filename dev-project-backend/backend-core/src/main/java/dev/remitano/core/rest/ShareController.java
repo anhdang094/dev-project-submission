@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/share")
 @CrossOrigin
-public class UserController extends AbstractController {
+public class ShareController extends AbstractController {
 
 }

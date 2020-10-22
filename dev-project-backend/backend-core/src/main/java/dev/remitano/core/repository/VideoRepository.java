@@ -1,12 +1,10 @@
 package dev.remitano.core.repository;
 
-import dev.remitano.core.models.User;
+import dev.remitano.core.models.Video;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    User findFirstById(long userId);
+public interface VideoRepository extends JpaRepository<Video, Long> {
 
 }
