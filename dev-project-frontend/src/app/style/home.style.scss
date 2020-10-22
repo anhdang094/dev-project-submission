@@ -1,0 +1,45 @@
+.home {
+  min-height: 700px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #a20c0c;
+  }
+  .number-vote {
+    margin-right: 8px;
+  }
+
+  .vote {
+    margin-right: 20px;
+  }
+
+  .description {
+    font-weight: 300;
+    font-size: 15px;
+  }
+
+  .video {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .account {
+    margin-right: 100px;
+  }
+
+  .large {
+    &.fa-thumbs-o-down,
+    &.fa-thumbs-o-up {
+      font-size: 40px;
+    }
+  }
+
+  .video-frame {
+    min-width: 100%;
+    min-height: 250px;
+  }
+
+
+}

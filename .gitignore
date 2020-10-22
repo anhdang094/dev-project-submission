@@ -8,3 +8,9 @@ dev-project-backend/.idea/
 *.iml
 
 dev-project-frontend/.idea/
+
+dev-project-backend/log/
+
+dev-project-backend/backend-core/target/
+
+dev-project-backend/backend-infrastructure/target/
