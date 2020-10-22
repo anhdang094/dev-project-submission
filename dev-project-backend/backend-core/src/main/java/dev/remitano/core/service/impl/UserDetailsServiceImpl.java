@@ -1,4 +1,4 @@
-package dev.remitano.core.service;
+package dev.remitano.core.service.impl;
 
 import dev.remitano.core.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
