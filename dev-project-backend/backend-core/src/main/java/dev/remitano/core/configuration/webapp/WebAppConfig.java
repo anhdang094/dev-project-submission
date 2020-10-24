@@ -65,4 +65,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.addViewController("/").setViewName("index");
   }
+
 }
