@@ -11,14 +11,17 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
-public class User extends GenericEntity {
+@Table(name = "votes")
+public class Vote extends GenericEntity {
 
-    @Column(name = "email", unique = true)
-    private String email;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "video_id")
+    private Long videoId;
+
+    @Column(name = "type")
+    private Integer type;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate;

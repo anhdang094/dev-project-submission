@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class Video extends GenericEntity {
     private String title;
 
     @Column(name = "share_by")
-    private Long shareBy;
+    private String shareBy;
 
     @Column(name = "vote_up")
     private Long voteUp;
@@ -30,6 +31,18 @@ public class Video extends GenericEntity {
 
     @Column(name = "descriptions")
     private String descriptions;
+
+    @Column(name = "author")
+    private String author;
+
+    @Column(name = "author_url")
+    private String authorUrl;
+
+    @Column(name = "html")
+    private String html;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
 
 }
 

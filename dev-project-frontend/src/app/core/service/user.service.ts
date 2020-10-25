@@ -14,8 +14,8 @@ export class UserService extends HttpService {
     return this.postAPI('/users/signup', data);
   }
 
-  public login(data: any): Promise<any> {
-    return this.postAPI('/login', data);
+  public login(data: any) {
+    return this.postWithResponse('/login', data);
   }
 
 }

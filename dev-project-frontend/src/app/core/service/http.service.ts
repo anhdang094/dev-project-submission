@@ -48,6 +48,14 @@ export class HttpService {
             .catch(this.handleError);
     }
 
+  protected postWithResponse(url: string, data: any) {
+    let headers = new HttpHeaders({
+      'Access-Control-Allow-Origin': '*',
+    });
+    url = this.env.url + url;
+    return this.http.post(url, data, {headers: headers, observe: "response", responseType: 'json'});
+  }
+
     protected putAPI(url: string, data: any): Promise<any> {
         let headers = new HttpHeaders({
             'apiKey': ''

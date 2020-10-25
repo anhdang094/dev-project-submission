@@ -6,11 +6,16 @@ import { AppComponent } from './app.component';
 import {CoreModule} from './core/core.module';
 import {HomeComponent} from './component/home.component';
 import {FormsModule} from '@angular/forms';
+import {ShareComponent} from './component/share.component';
+import {HomeService} from './service/home.service';
+import {SanitizeHtmlPipe} from './pipe/html-safe.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ShareComponent,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -18,7 +23,9 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
