@@ -18,6 +18,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.lang.reflect.Method;
+import java.util.Arrays;
+
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -36,7 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/users/signup").permitAll()
-                .antMatchers( "/api/videos").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/logout").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/videos").permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
@@ -52,12 +57,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(ImmutableList.of("*"));
+        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+        /*configuration.setAllowedOrigins(ImmutableList.of("*"));
         configuration.setAllowedMethods(ImmutableList.of("*"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(ImmutableList.of("*"));
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration);*/
         return source;
     }
 

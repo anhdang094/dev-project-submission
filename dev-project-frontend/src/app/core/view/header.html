@@ -5,7 +5,12 @@
         <i class="fa fa-home" aria-hidden="true"></i>
         <span class="funny-text">Funny Movies</span>
       </div>
-      <div class="col-sm-7 login">
+      <div *ngIf="isLogin" class="col-sm-7 login">
+        <span class="margin-right-15">Wellcome abc@gmail.com</span>
+        <button type="button" class="btn btn-secondary btn-sm margin-right-15" (click)="shareMovie()">Share a movie</button>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="logout()">Logout</button>
+      </div>
+      <div *ngIf="!isLogin" class="col-sm-7 login">
         <input placeholder="Email" [(ngModel)]="email">
         <input placeholder="Password" [(ngModel)]="password">
         <button type="button" class="btn btn-secondary btn-sm" (click)="login()">Login / Register</button>

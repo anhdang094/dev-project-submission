@@ -7,7 +7,7 @@ import {CoreModule} from './core/core.module';
 import {HomeComponent} from './component/home.component';
 import {FormsModule} from '@angular/forms';
 import {ShareComponent} from './component/share.component';
-import {HomeService} from './service/home.service';
+import {VideoService} from './service/video.service';
 import {SanitizeHtmlPipe} from './pipe/html-safe.pipe';
 
 @NgModule({
@@ -24,7 +24,7 @@ import {SanitizeHtmlPipe} from './pipe/html-safe.pipe';
     CoreModule
   ],
   providers: [
-    HomeService
+    VideoService
   ],
   bootstrap: [AppComponent]
 })

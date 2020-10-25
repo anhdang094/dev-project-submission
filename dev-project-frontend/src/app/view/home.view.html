@@ -10,7 +10,7 @@
           <span class="title">{{video.title}}</span>
         </div>
         <div class="col-sm-12">
-          <span>Shared by: </span><span class="account">{{video.shareBy}}</span>
+          <span class="bold">Shared by: </span><span class="account">{{video.shareBy}}</span>
           <i class="fa fa-thumbs-o-up large vote" aria-hidden="true" (click)="voteVideo(video.id, voteUp)"></i>
           <i class="fa fa-thumbs-o-down large vote" aria-hidden="true" (click)="voteVideo(video.id, voteDown)"></i>
         </div>
@@ -20,7 +20,7 @@
                                                                  aria-hidden="true"></i>
         </div>
         <div class="col-sm-12">
-          <span>Description</span>
+          <span class="bold">Description:</span>
         </div>
         <div class="col-sm-12">
           <span class="description">
