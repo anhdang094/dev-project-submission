@@ -11,7 +11,7 @@ export class HttpService {
 
     protected getAPI(url: string): Promise<any> {
         const headers = new HttpHeaders({
-            'apiKey': ''
+          'Access-Control-Allow-Origin': 'http://localhost:8700'
         });
         url = this.env.url + url;
         return this.http.get(url, {headers: headers}).toPromise()
@@ -40,7 +40,7 @@ export class HttpService {
 
     protected postAPI(url: string, data: any): Promise<any> {
         let headers = new HttpHeaders({
-            'apiKey': ''
+          'Access-Control-Allow-Origin': '*'
         });
         url = this.env.url + url;
         return this.http.post(url, data, {headers: headers}).toPromise()
