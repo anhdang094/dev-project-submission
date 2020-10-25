@@ -14,3 +14,5 @@ dev-project-backend/log/
 dev-project-backend/backend-core/target/
 
 dev-project-backend/backend-infrastructure/target/
+
+dev-project-frontend/package-lock.json
