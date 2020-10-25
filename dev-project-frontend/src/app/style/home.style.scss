@@ -1,5 +1,5 @@
 .home {
-  min-height: 700px;
+  min-height: 800px;
   margin-top: 50px;
   margin-bottom: 50px;
   .title {
@@ -43,6 +43,10 @@
   .video-frame {
     min-width: 100%;
     min-height: 250px;
+  }
+
+  .bold {
+    font-weight: 500;
   }
 
 

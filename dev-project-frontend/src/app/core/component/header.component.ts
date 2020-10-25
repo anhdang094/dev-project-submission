@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../service/user.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,14 +8,17 @@ import {UserService} from '../service/user.service';
   templateUrl: '../view/header.html'
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   email: string = '';
   password: string = '';
+  isLogin: boolean = true;
 
-  constructor(private userService: UserService) {
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
 
+  ngOnInit(): void {
+  }
 
   login() {
     this.userService.register({
@@ -30,6 +34,16 @@ export class HeaderComponent {
         },
         error => {
         });
+    });
+  }
+
+  shareMovie() {
+    this.router.navigate(['/share']);
+  }
+
+  logout() {
+    this.userService.logout().then(res => {
+      this.isLogin = false;
     });
   }
 

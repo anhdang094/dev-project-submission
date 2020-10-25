@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -38,7 +39,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Page<Video> getAllVideo(int page, int pageSize) {
-        return videoRepository.findAll(PageRequest.of(page - 1, pageSize));
+        return videoRepository.findAll(PageRequest.of(page - 1, pageSize, Sort.by("createdDate").descending()));
     }
 
     @Override

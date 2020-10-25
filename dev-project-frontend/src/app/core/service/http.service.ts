@@ -11,7 +11,7 @@ export class HttpService {
 
     protected getAPI(url: string): Promise<any> {
         const headers = new HttpHeaders({
-          'Access-Control-Allow-Origin': 'http://localhost:8700'
+          'Access-Control-Allow-Origin': '*'
         });
         url = this.env.url + url;
         return this.http.get(url, {headers: headers}).toPromise()

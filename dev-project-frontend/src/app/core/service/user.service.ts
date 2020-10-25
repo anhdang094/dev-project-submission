@@ -18,4 +18,8 @@ export class UserService extends HttpService {
     return this.postWithResponse('/login', data);
   }
 
+  public logout() {
+    return this.postAPI('/logout', null);
+  }
+
 }

@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {HttpService} from '../core/service/http.service';
 
 @Injectable()
-export class HomeService extends HttpService {
+export class VideoService extends HttpService {
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
@@ -15,6 +15,10 @@ export class HomeService extends HttpService {
 
   public voteVideo(id: number, type: number): Promise<any> {
     return this.putAPI('/api/videos/' + id + "/vote?type=" + type, null);
+  }
+
+  public shareVideo(data: any): Promise<any> {
+    return this.postAPI('/api/videos', data);
   }
 
 }

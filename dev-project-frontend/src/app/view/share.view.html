@@ -1,3 +1,20 @@
 <div class="container share">
-
+  <hr class="hr-left">
+  <span> Share a Youtube movie </span>
+  <hr class="hr-right">
+  <div id="container">
+    <div class="row padding-input">
+      <div class="col-sm-3 bold">
+        Youtube URL:
+      </div>
+      <div class="col-sm-9 url-input">
+        <input placeholder="Input youtube url" [(ngModel)]="url">
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button type="button" class="btn btn-primary btn-sm btn-share" (click)="submitShareMovie()">Share</button>
+        </div>
+      </div>
+  </div>
 </div>
