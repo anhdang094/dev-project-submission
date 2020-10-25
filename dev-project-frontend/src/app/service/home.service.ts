@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpService} from './http.service';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {HttpService} from '../core/service/http.service';
 
 @Injectable()
 export class HomeService extends HttpService {
@@ -10,28 +9,12 @@ export class HomeService extends HttpService {
     super(httpClient);
   }
 
-  public uploadAvatar(file): Promise<any> {
-    return this.postFile('/api/avatars', file);
+  public getAllVideo(page: number, pageSize: number): Promise<any> {
+    return this.getAPI('/api/videos?page=' + page + "&pageSize=" + pageSize);
   }
 
-  public registerArtist(data: any): Promise<any> {
-    return this.postAPI('/api/artists', data);
-  }
-
-  public updateArtist(data: any): Promise<any> {
-    return this.putAPI('/api/artists', data);
-  }
-
-  public getAllArtist(page: number, pageSize: number, character: string): Promise<any> {
-    return this.getAPI('/api/artists?page=' + page + "&pageSize=" + pageSize + "&character=" + character);
-  }
-
-  public getArtistById(id: number): Promise<any> {
-    return this.getAPI('/api/artists/' + id);
-  }
-
-  public getNounc(id: number, address: string): Promise<any> {
-    return this.getAPI('/authen/nounc/' + id + '?address=' + address);
+  public voteVideo(id: number, type: number): Promise<any> {
+    return this.putAPI('/api/videos/' + id + "/vote?type=" + type, null);
   }
 
 }

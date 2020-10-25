@@ -34,6 +34,10 @@
     &.fa-thumbs-o-up {
       font-size: 40px;
     }
+    &:hover {
+      cursor: pointer;
+      color: blue;
+    }
   }
 
   .video-frame {

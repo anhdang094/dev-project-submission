@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @Transactional
@@ -26,9 +27,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(AuthenDto dto) {
-        User user = new User();
-        user.setEmail(dto.getEmail());
-        user.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
-        return userRepository.save(user);
+        User user = userRepository.findFirstByEmail(dto.getEmail());
+        if (user == null) {
+            User userLogin = new User();
+            userLogin.setEmail(dto.getEmail());
+            userLogin.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
+            userLogin.setCreatedDate(LocalDateTime.now());
+            return userRepository.save(userLogin);
+        } else {
+            return user;
+        }
     }
 }

@@ -24,9 +24,12 @@ export class HeaderComponent {
       this.userService.login({
         email: this.email,
         password: this.password,
-      }).then(res => {
-        console.log(res.headers.get('Authorization'));
-      });
+      }).subscribe(
+        (res: any) => {
+          console.log(res.headers.get('Authorization'));
+        },
+        error => {
+        });
     });
   }
 

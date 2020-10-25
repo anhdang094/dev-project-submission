@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './component/home.component';
+import {ShareComponent} from './component/share.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'share', component: ShareComponent},
   {path: '**', component: HomeComponent}
 ];
 
