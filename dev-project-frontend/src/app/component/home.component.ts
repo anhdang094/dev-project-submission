@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   totalPage: number = 0;
   voteUp: VoteTypeEnum = VoteTypeEnum.UP;
   voteDown: VoteTypeEnum = VoteTypeEnum.DOWN;
+  page: number = 1;
+  pageSize: number = 5;
 
   voteVideo(id: number, type: VoteTypeEnum) {
     this.videoService.voteVideo(id, type).then(res => {
@@ -27,8 +29,15 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  moreMovie(): void {
+    this.page = this.page + 1;
+    this.videoService.getAllVideo(this.page, this.pageSize).then(res => {
+      this.videoData.push.apply(this.videoData, res.data.content as Video[]);
+    });
+  }
+
   ngOnInit(): void {
-    this.videoService.getAllVideo(1, 5).then(res => {
+    this.videoService.getAllVideo(1, this.pageSize).then(res => {
       this.videoData = (res.data.content as Video[]);
       this.totalPage = res.data.totalPages;
     });
