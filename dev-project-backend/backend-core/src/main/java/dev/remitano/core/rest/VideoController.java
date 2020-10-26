@@ -1,14 +1,11 @@
 package dev.remitano.core.rest;
 
-import dev.remitano.core.dto.request.VideoUrlDto;
-import dev.remitano.core.models.User;
 import dev.remitano.core.service.VideoService;
+import dev.remitano.infrastructure.dto.request.VideoUrlDto;
 import dev.remitano.infrastructure.enumeration.VoteType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,7 +30,8 @@ public class VideoController extends AbstractController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<?> shareVideo(@RequestBody VideoUrlDto data) {
         try {
-            return new ResponseEntity<>(buildSuccessResponse(videoService.shareVideo(data.getUrl())), HttpStatus.OK);
+            videoService.pushShareVideo(data.getUrl());
+            return new ResponseEntity<>(buildSuccessResponse("Successful"), HttpStatus.OK);
         } catch (Exception e) {
             _logger.error("Exception ", e);
             return new ResponseEntity<>(buildFailResponse(), HttpStatus.OK);

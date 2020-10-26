@@ -1,6 +1,6 @@
 package dev.remitano.core.service.impl;
 
-import dev.remitano.core.dto.request.AuthenDto;
+import dev.remitano.infrastructure.dto.request.AuthenDto;
 import dev.remitano.core.models.User;
 import dev.remitano.core.repository.UserRepository;
 import dev.remitano.core.service.UserService;

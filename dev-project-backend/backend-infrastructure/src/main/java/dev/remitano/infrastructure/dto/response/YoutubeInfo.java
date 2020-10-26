@@ -1,4 +1,4 @@
-package dev.remitano.core.dto.response;
+package dev.remitano.infrastructure.dto.response;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;

@@ -1,8 +1,9 @@
 package dev.remitano.core.service.impl;
 
+import dev.remitano.core.activemq.Producer;
 import dev.remitano.core.configuration.cache.UserCache;
 import dev.remitano.core.configuration.cache.VideoCache;
-import dev.remitano.core.dto.response.YoutubeInfo;
+import dev.remitano.infrastructure.dto.response.YoutubeInfo;
 import dev.remitano.core.models.Video;
 import dev.remitano.core.models.Vote;
 import dev.remitano.core.repository.VideoRepository;
@@ -16,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -42,12 +42,23 @@ public class VideoServiceImpl implements VideoService {
     @Autowired
     private UserCache userCache;
 
+    @Autowired
+    private Producer producer;
+
     @Value("${app.youtube.url}")
     private String youtubeApi;
+
+    @Value("${app.activemq.queue-name}")
+    private String videoQueue;
 
     @Override
     public Page<Video> getAllVideo(int page, int pageSize) {
         return videoCache.getVideo(page, pageSize);
+    }
+
+    @Override
+    public void pushShareVideo(String url) {
+        producer.sendMessage(videoQueue, url);
     }
 
     @Override
