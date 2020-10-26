@@ -1,4 +1,4 @@
-package dev.remitano.core.dto.request;
+package dev.remitano.infrastructure.dto.request;
 
 
 import lombok.Getter;
