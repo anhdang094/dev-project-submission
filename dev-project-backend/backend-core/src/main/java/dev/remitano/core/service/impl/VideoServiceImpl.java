@@ -1,5 +1,6 @@
 package dev.remitano.core.service.impl;
 
+import dev.remitano.core.configuration.cache.VideoCache;
 import dev.remitano.core.dto.response.YoutubeInfo;
 import dev.remitano.core.models.Video;
 import dev.remitano.core.models.Vote;
@@ -14,8 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -34,12 +33,15 @@ public class VideoServiceImpl implements VideoService {
     @Autowired
     private VoteRepository voteRepository;
 
+    @Autowired
+    private VideoCache videoCache;
+
     @Value("${app.youtube.url}")
     private String youtubeApi;
 
     @Override
     public Page<Video> getAllVideo(int page, int pageSize) {
-        return videoRepository.findAll(PageRequest.of(page - 1, pageSize, Sort.by("createdDate").descending()));
+        return videoCache.getVideo(page, pageSize);
     }
 
     @Override
@@ -56,7 +58,9 @@ public class VideoServiceImpl implements VideoService {
             video.setAuthorUrl(youtubeInfo.getAuthorUrl());
             video.setHtml(youtubeInfo.getHtml());
             video.setCreatedDate(LocalDateTime.now());
-            return videoRepository.save(video);
+            Video result = videoRepository.save(video);
+            videoCache.deleteVideoCache();
+            return result;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,6 +91,8 @@ public class VideoServiceImpl implements VideoService {
             default:
                 break;
         }
-        return videoRepository.save(video);
+        Video result = videoRepository.save(video);
+        videoCache.deleteVideoCache();
+        return result;
     }
 }
