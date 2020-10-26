@@ -40,4 +40,11 @@
       </div>
     </div>
   </div>
+  <div class="row" *ngIf="totalPage > page">
+    <div class="col-sm-12 center">
+      <button type="button" class="btn btn-outline-info btn-sm btn-more" (click)="moreMovie()">
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i> More
+      </button>
+    </div>
+  </div>
 </div>
