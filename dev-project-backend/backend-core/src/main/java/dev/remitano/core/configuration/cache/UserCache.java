@@ -32,7 +32,7 @@ public class UserCache {
         try {
             return userCacheLoader.get(id);
         } catch (Exception e) {
-            _logger.info("Exception with message: " + e.getMessage());
+            _logger.error("Exception with message: " + e.getMessage());
         }
         return null;
     }
