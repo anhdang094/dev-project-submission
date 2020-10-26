@@ -1,4 +1,4 @@
-package dev.remitano.core.dto;
+package dev.remitano.infrastructure.dto;
 
 public class GenericDto {
 
