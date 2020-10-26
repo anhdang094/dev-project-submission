@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   email: string = '';
   password: string = '';
-  isLogin: boolean = true;
+  isLogin: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
         password: this.password,
       }).subscribe(
         (res: any) => {
-          console.log(res.headers.get('Authorization'));
+          this.isLogin = true;
         },
         error => {
         });
