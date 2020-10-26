@@ -13,11 +13,15 @@ export class HeaderComponent implements OnInit {
   email: string = '';
   password: string = '';
   isLogin: boolean = false;
+  isError: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem("Authorization")) {
+      this.isLogin = true;
+    }
   }
 
   login() {
@@ -34,6 +38,7 @@ export class HeaderComponent implements OnInit {
           this.isLogin = true;
         },
         error => {
+          this.isError = true;
         });
     });
   }
