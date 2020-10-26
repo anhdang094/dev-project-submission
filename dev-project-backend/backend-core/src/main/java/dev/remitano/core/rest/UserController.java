@@ -1,6 +1,6 @@
 package dev.remitano.core.rest;
 
-import dev.remitano.core.dto.request.AuthenDto;
+import dev.remitano.infrastructure.dto.request.AuthenDto;
 import dev.remitano.core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
