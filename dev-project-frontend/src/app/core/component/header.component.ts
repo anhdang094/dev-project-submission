@@ -53,4 +53,8 @@ export class HeaderComponent implements OnInit {
     this.userService.logout();
   }
 
+  resetError() {
+    this.isError = false;
+  }
+
 }

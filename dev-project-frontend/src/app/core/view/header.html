@@ -11,8 +11,8 @@
         <button type="button" class="btn btn-secondary btn-sm" (click)="logout()">Logout</button>
       </div>
       <div *ngIf="!isLogin" class="col-sm-7 login">
-        <input placeholder="Email" [(ngModel)]="email">
-        <input placeholder="Password" [(ngModel)]="password" type="password">
+        <input placeholder="Email" [(ngModel)]="email" (change)="resetError()">
+        <input placeholder="Password" [(ngModel)]="password" type="password" (change)="resetError()">
         <button type="button" class="btn btn-secondary btn-sm" (click)="login()">Login / Register</button>
         <br>
         <span *ngIf="isError" class="error-login">Password is incorrect!</span>
