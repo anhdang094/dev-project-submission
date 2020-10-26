@@ -12,7 +12,7 @@
       </div>
       <div *ngIf="!isLogin" class="col-sm-7 login">
         <input placeholder="Email" [(ngModel)]="email">
-        <input placeholder="Password" [(ngModel)]="password">
+        <input placeholder="Password" [(ngModel)]="password" type="password">
         <button type="button" class="btn btn-secondary btn-sm" (click)="login()">Login / Register</button>
       </div>
     </div>

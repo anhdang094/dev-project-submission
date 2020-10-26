@@ -20,17 +20,17 @@ public class UserCache {
     @Autowired
     private UserRepository userRepository;
 
-    private LoadingCache<Long, User> userCacheLoader = CacheBuilder.newBuilder()
-            .expireAfterWrite(30, TimeUnit.DAYS).build(new CacheLoader<Long, User>() {
+    private LoadingCache<String, User> userCacheLoader = CacheBuilder.newBuilder()
+            .expireAfterWrite(30, TimeUnit.DAYS).build(new CacheLoader<String, User>() {
                 @Override
-                public User load(Long id) {
-                    return userRepository.findFirstById(id);
+                public User load(String email) {
+                    return userRepository.findFirstByEmail(email);
                 }
             });
 
-    public User getUserById(Long id) {
+    public User getUserByEmail(String email) {
         try {
-            return userCacheLoader.get(id);
+            return userCacheLoader.get(email);
         } catch (Exception e) {
             _logger.error("Exception with message: " + e.getMessage());
         }

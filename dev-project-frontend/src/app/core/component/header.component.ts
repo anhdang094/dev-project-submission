@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
         password: this.password,
       }).subscribe(
         (res: any) => {
+          localStorage.setItem("Authorization", res.headers.get('Authorization'));
           this.isLogin = true;
         },
         error => {
@@ -42,9 +43,9 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.userService.logout().then(res => {
-      this.isLogin = false;
-    });
+    localStorage.removeItem("Authorization");
+    this.isLogin = false;
+    this.userService.logout();
   }
 
 }

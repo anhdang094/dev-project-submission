@@ -1,16 +1,18 @@
 package dev.remitano.core.rest;
 
 import dev.remitano.core.dto.request.VideoUrlDto;
+import dev.remitano.core.models.User;
 import dev.remitano.core.service.VideoService;
 import dev.remitano.infrastructure.enumeration.VoteType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/videos")
-@CrossOrigin
 public class VideoController extends AbstractController {
 
     @Autowired

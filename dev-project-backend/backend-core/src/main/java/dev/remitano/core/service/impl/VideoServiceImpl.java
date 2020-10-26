@@ -1,5 +1,6 @@
 package dev.remitano.core.service.impl;
 
+import dev.remitano.core.configuration.cache.UserCache;
 import dev.remitano.core.configuration.cache.VideoCache;
 import dev.remitano.core.dto.response.YoutubeInfo;
 import dev.remitano.core.models.Video;
@@ -15,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,7 +28,7 @@ import java.time.LocalDateTime;
 @Transactional
 public class VideoServiceImpl implements VideoService {
 
-    protected static Logger _logger = LoggerFactory.getLogger(VideoServiceImpl.class);
+    protected static Logger LOGGER = LoggerFactory.getLogger(VideoServiceImpl.class);
 
     @Autowired
     private VideoRepository videoRepository;
@@ -35,6 +38,9 @@ public class VideoServiceImpl implements VideoService {
 
     @Autowired
     private VideoCache videoCache;
+
+    @Autowired
+    private UserCache userCache;
 
     @Value("${app.youtube.url}")
     private String youtubeApi;
@@ -49,6 +55,7 @@ public class VideoServiceImpl implements VideoService {
         try {
             YoutubeInfo youtubeInfo = GsonUtils.fromJsonString(HttpRequestUtils.sendGet(youtubeApi.replace("{videoUrl}", url), 5000), YoutubeInfo.class);
             Video video = new Video();
+            video.setShareBy(SecurityContextHolder.getContext().getAuthentication().getName());
             video.setTitle(youtubeInfo.getTitle());
             video.setLink(url);
             video.setVoteDown(0L);
@@ -62,6 +69,7 @@ public class VideoServiceImpl implements VideoService {
             videoCache.deleteVideoCache();
             return result;
         } catch (IOException e) {
+            LOGGER.error("Exception: ", e);
             e.printStackTrace();
         }
         return null;
@@ -74,7 +82,7 @@ public class VideoServiceImpl implements VideoService {
             return null;
         }
         Vote vote = new Vote();
-        vote.setUserId(1L);
+        vote.setUserId(userCache.getUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).getId());
         vote.setVideoId(videoId);
         vote.setType(type.getCode());
         vote.setCreatedDate(LocalDateTime.now());

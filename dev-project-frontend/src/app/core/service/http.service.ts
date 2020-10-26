@@ -10,8 +10,9 @@ export class HttpService {
     }
 
     protected getAPI(url: string): Promise<any> {
+      let authen = localStorage.getItem("Authorization");
         const headers = new HttpHeaders({
-          'Access-Control-Allow-Origin': '*'
+          'Authorization': authen ? authen : ''
         });
         url = this.env.url + url;
         return this.http.get(url, {headers: headers}).toPromise()
@@ -26,8 +27,9 @@ export class HttpService {
     }
 
     protected postFile(url: string, fileToUpload: File): Promise<any> {
+      let authen = localStorage.getItem("Authorization");
         let headers = new HttpHeaders({
-            'apiKey': ''
+          'Authorization': authen ? authen : ''
         });
         url = this.env.url + url;
         const formData: FormData = new FormData();
@@ -39,8 +41,9 @@ export class HttpService {
     }
 
     protected postAPI(url: string, data: any): Promise<any> {
+      let authen = localStorage.getItem("Authorization");
         let headers = new HttpHeaders({
-          'Access-Control-Allow-Origin': '*'
+          'Authorization': authen ? authen : ''
         });
         url = this.env.url + url;
         return this.http.post(url, data, {headers: headers}).toPromise()
@@ -49,16 +52,18 @@ export class HttpService {
     }
 
   protected postWithResponse(url: string, data: any) {
+    let authen = localStorage.getItem("Authorization");
     let headers = new HttpHeaders({
-      'Access-Control-Allow-Origin': '*',
+      'Authorization': authen ? authen : ''
     });
     url = this.env.url + url;
     return this.http.post(url, data, {headers: headers, observe: "response", responseType: 'json'});
   }
 
     protected putAPI(url: string, data: any): Promise<any> {
+      let authen = localStorage.getItem("Authorization");
         let headers = new HttpHeaders({
-            'apiKey': ''
+          'Authorization': authen ? authen : ''
         });
         url = this.env.url + url;
         return this.http.put(url, data, {headers: headers}).toPromise()
@@ -67,8 +72,9 @@ export class HttpService {
     }
 
     protected deleteAPI(url: string): Promise<any> {
+      let authen = localStorage.getItem("Authorization");
         let headers = new HttpHeaders({
-            'apiKey': ''
+          'Authorization': authen ? authen : ''
         });
         url = this.env.url + url;
         return this.http.delete(url, {headers: headers}).toPromise()

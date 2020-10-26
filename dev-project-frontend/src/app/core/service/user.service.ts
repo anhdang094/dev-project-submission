@@ -19,7 +19,7 @@ export class UserService extends HttpService {
   }
 
   public logout() {
-    return this.postAPI('/logout', null);
+    return this.postWithResponse('/logout', {});
   }
 
 }
