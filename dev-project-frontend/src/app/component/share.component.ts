@@ -1,6 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {VideoService} from '../service/video.service';
 import {ActivatedRoute, Router} from '@angular/router';
+declare var $:any;
 
 @Component({
   selector: 'app-share',
@@ -17,8 +18,21 @@ export class ShareComponent {
 
   submitShareMovie() {
     this.videoService.shareVideo({url: this.url}).then(res => {
-      this.router.navigate(['']);
+      this.openNotice();
     });
+  }
+
+  openNotice() {
+    $("#noticeModal").modal('show');
+  }
+
+  closeNotice() {
+    $("#noticeModal").modal('hide');
+  }
+
+  goToHomePage() {
+    this.closeNotice();
+    this.router.navigate(['']);
   }
 
 }
