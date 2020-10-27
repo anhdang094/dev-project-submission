@@ -1,6 +1,8 @@
 package dev.remitano.core.activemq.listener;
 
 import dev.remitano.core.service.VideoService;
+import dev.remitano.infrastructure.dto.request.SharingQueueDto;
+import dev.remitano.infrastructure.utils.GsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class VideoShareListener {
     public void receiveMessage(Message jsonMessage) throws JMSException {
         if (jsonMessage instanceof TextMessage) {
             TextMessage textMessage = (TextMessage) jsonMessage;
-            videoService.shareVideo(textMessage.getText());
+            videoService.shareVideo(GsonUtils.fromJsonString(textMessage.getText(), SharingQueueDto.class));
         }
     }
 }

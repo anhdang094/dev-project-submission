@@ -1,6 +1,7 @@
 package dev.remitano.core.service;
 
 import dev.remitano.core.models.Video;
+import dev.remitano.infrastructure.dto.request.SharingQueueDto;
 import dev.remitano.infrastructure.enumeration.VoteType;
 import org.springframework.data.domain.Page;
 
@@ -22,11 +23,11 @@ public interface VideoService {
     void pushShareVideo(String url);
 
     /**
-     * share video
-     * @param url
+     * shareVideo
+     * @param dto
      * @return
      */
-    Video shareVideo(String url);
+    Video shareVideo(SharingQueueDto dto);
 
     /**
      * vote video
