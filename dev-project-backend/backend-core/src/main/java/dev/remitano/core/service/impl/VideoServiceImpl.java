@@ -3,6 +3,7 @@ package dev.remitano.core.service.impl;
 import dev.remitano.core.activemq.Producer;
 import dev.remitano.core.configuration.cache.UserCache;
 import dev.remitano.core.configuration.cache.VideoCache;
+import dev.remitano.infrastructure.dto.request.SharingQueueDto;
 import dev.remitano.infrastructure.dto.response.YoutubeInfo;
 import dev.remitano.core.models.Video;
 import dev.remitano.core.models.Vote;
@@ -58,17 +59,20 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public void pushShareVideo(String url) {
-        producer.sendMessage(videoQueue, url);
+        SharingQueueDto sharingQueueDto = new SharingQueueDto();
+        sharingQueueDto.setUrl(url);
+        sharingQueueDto.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+        producer.sendMessage(videoQueue, GsonUtils.toJsonString(sharingQueueDto));
     }
 
     @Override
-    public Video shareVideo(String url) {
+    public Video shareVideo(SharingQueueDto dto) {
         try {
-            YoutubeInfo youtubeInfo = GsonUtils.fromJsonString(HttpRequestUtils.sendGet(youtubeApi.replace("{videoUrl}", url), 5000), YoutubeInfo.class);
+            YoutubeInfo youtubeInfo = GsonUtils.fromJsonString(HttpRequestUtils.sendGet(youtubeApi.replace("{videoUrl}", dto.getUrl()), 5000), YoutubeInfo.class);
             Video video = new Video();
-            video.setShareBy(SecurityContextHolder.getContext().getAuthentication().getName());
+            video.setShareBy(dto.getUserName());
             video.setTitle(youtubeInfo.getTitle());
-            video.setLink(url);
+            video.setLink(dto.getUrl());
             video.setVoteDown(0L);
             video.setVoteUp(0L);
             video.setDescriptions(youtubeInfo.getTitle());
